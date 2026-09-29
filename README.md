@@ -78,6 +78,18 @@ After changing db/schema.ts, run pnpm db:generate. Never rewrite a migration alr
 
 ## Deployment
 
+### Render frontend
+
+The root `render.yaml` configures a Render Static Site for the frontend. In Render, select **New > Blueprint**, connect `kabega/MALCOM`, select `main`, and deploy the Blueprint.
+
+- Build command: `npx --yes pnpm@11.25.0 install --frozen-lockfile && npm run build:frontend`
+- Publish directory: `dist/frontend`
+- Local production build: `npm run build:frontend`
+
+This deployment displays sample data. Opportunity creation, saved compliance decisions, and persistent audit events require the Cloudflare Workers/D1 backend; the static site does not deploy that API. Render's sign-in protects the dashboard, not the published frontend.
+
+### Cloudflare full application
+
 The project is configured for deployment as a private ChatGPT Site with D1 persistence. The hosting process applies migrations before publishing the Worker.
 
 Current application: https://malcom-market-intelligence-platform.kabegadavismayiga.chatgpt.site

@@ -7,6 +7,7 @@ export default defineConfig({
   publicDir: fileURLToPath(new URL("./public", import.meta.url)),
   css: { postcss: fileURLToPath(new URL("./", import.meta.url)) },
   server: { host: "127.0.0.1", port: 5173, strictPort: true },
+  build: { outDir: fileURLToPath(new URL("./dist/frontend", import.meta.url)), emptyOutDir: true },
   plugins: [react(), {
     name: "frontend-preview-api",
     configureServer(server) {

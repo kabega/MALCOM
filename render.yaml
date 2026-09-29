@@ -1,0 +1,16 @@
+# Frontend only: sample data, without the Cloudflare Workers/D1 API.
+services:
+  - type: web
+    name: malcom-frontend
+    runtime: static
+    buildCommand: npx --yes pnpm@11.25.0 install --frozen-lockfile && npm run build:frontend
+    staticPublishPath: ./dist/frontend
+    envVars:
+      - key: NODE_VERSION
+        value: 22.23.3
+      - key: SKIP_INSTALL_DEPS
+        value: "true"
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
